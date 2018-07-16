@@ -7,7 +7,7 @@ int main (){
     int bsp;
     std::cin >> bsp;
     double epsilon, a, b;
-    bool Grafik = true;
+    bool Grafik = false;
     Start ( bsp, a, b, epsilon, Grafik, 300);
 
     double IM = 0;
