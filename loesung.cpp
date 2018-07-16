@@ -14,6 +14,7 @@ int main (){
     double IT = 0;
     double differenz = 1000;
     int n = 0;
+    double h;
     
     while (differenz >= epsilon ){
         n++;
@@ -26,8 +27,7 @@ int main (){
         }
         differenz = fabs( IM - IT);
     }
-    double h = (b-a)/n.;
-    double I = 0
+    double I = 0;
     I += h/6. *( f(a) + f(b) );
     for (int i = 0 ; i < n ;  i++){
         I += 4*h/6. * f(a+ i*h);
