@@ -2,36 +2,66 @@
 #include "unit.h"
 #include <iostream>
 #include <math.h>
+#include <vector>
+typedef double(*function) (double);
+double Trapezregel( double a, double b, double fa, double fb) {return (b-a) * (1./2 * fa + 1./2 fb) ;}
+double Mittelpunktsregel( double a, double b, double fm){ return (b-a) * fm;}
+double Simpsonregel( double a, double b, double fa, double fb, double fm){return (b-a)*(1./6 * fa + 4./6 * fm + 1./6*fb;}
+bool fehler( double a, double b, double fa, double fb,double fm, double epsilon){return fabs(Mittelpunktsregel(a,b,fm) - Trapezregel(a,b,fa,fb)) < epsilon;}
+void adaptiveMethod(double& I, function f, double a, double b, double fa, double fb, int& n, double epsilon, int rekTiefe, std::vector<int> Schrittweite)
+{
+    double fm;
+    if(rekTiefe == 0){
+        fa = f(a);
+        fb = f(b);
+        fm = f((a+b)/2);
+        Aufwand += 3;
+    }else{
+        fm = f((a+b)/2);
+        Aufwand++;
+    }
+    if ( !fehler(a,b,fa,fb,epsilon))
+    {
+        adaptiveMethod ( I, f, a, (a+b)./2, fa, fm, Aufwand, epsilon/2, rekTiefe + 1, Schrittweite);
+        adaptiveMethod ( I, f, (a+b)./2, b, fm, fb, Aufwand, epsilon/2, rekTiefe + 1, Schrittweite);
+    }else
+        Integral += Simpsonregel(a, b, fa, fb ,fm);
+    Schrittweite.push_back( rekTiefe+ 1);
+}
+double summierte_Trapezregel(function f, double a, double b, int n)
+{
+    double h = (b-a) /n ;
+    double I = 0;
+    for (int j = 1; j < n; j ++) sum += f(a + j*h);
+    return  (h/2) * (f(a) + f(b)) + sum;
+}
+    
+
 int main (){
-    std::cerr << " Welches Beispiel soll ausgefuehrt werden?" << std::endl;
+    std::vector < int> Schrittweite; //Vektor, der dokumentiert bei welcher Rekursionstiefe jeweils die Bedingung |Im - It | < epsilon erfüllt wurde.
+    std::cout << " Welches Beispiel soll ausgefuehrt werden? ( Zwischen 1 und "<< AnzahlBeispiele  << ")" << std::endl;
     int bsp;
     std::cin >> bsp;
-    double epsilon, a, b;
+    double epsilon, a, b, I, Aufwand,rekTiefe;
     bool Grafik = true;
-    Start ( bsp, a, b, epsilon, Grafik, 300);
-
-    double IM = 0;
-    double IT = 0;
-    double differenz = 1000;
-    int n = 0;
-    double h;
+    Start ( bsp, a, b, epsilon, Grafik);
     
-    while (differenz >= epsilon ){
-        n++;
-        IM = 0;
-        IT = 0;
-        h = (b -a) / n;
-        for (int j = 0; j < n ; j ++){
-            IM +=  h *  f(  a + j*h + h/2. );
-            IT +=  h/2. * ( f ( a+ j+h) + f(a + (j+1)*h) );
-        }
-        differenz = fabs( IM - IT);
-    }
-    double I = 0;
-    I += h/6. *( f(a) + f(b) );
-    for (int i = 0 ; i < n ;  i++){
-        I += 4*h/6. * f(a+ i*h);
-    }
+    
+    
+    adaptiveMethod ( I,f, a,b,0,0, Aufwand, epsilon, rekTiefe, Schrittweite );
+    std::cout << "Aufrufe der Funktion f: " << Aufwand << std::endl;
     Ergebnis ( I);
+    int max  = Schrittweite[0];
+    for ( int v : Schrittweite) if ( max < v) max = v; //größte Rekursionstiefe
+    double res = summierte_Trapezregel(f,a,b,max);
+    std::cout<<"Größte Rekursionstiefe bei adaptiver Auswertung: " << max <<". \n Und für die summierte Trapezregel erhalten wir: " << res << ". \n Sowieso den Rechenaufwand" <<  max + 1 << std::endl; ;
+    
+    
+
+    
+    
+    
+
+
     return 0;
 }
