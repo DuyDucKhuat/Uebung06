@@ -3,11 +3,11 @@
 #include <iostream>
 #include <math.h>
 int main (){
-    std::cout << " Welches Beispiel soll ausgefuehrt werden?" << std::endl;
+    std::cerr << " Welches Beispiel soll ausgefuehrt werden?" << std::endl;
     int bsp;
     std::cin >> bsp;
     double epsilon, a, b;
-    bool Grafik = false;
+    bool Grafik = true;
     Start ( bsp, a, b, epsilon, Grafik, 300);
 
     double IM = 0;
