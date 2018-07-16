@@ -33,7 +33,7 @@ double summierte_Trapezregel(function f, double a, double b, int n)
     double sum = 0;
     double h = (b-a) /n ;
     for (int j = 1; j < n; j ++) sum += f(a + j*h);
-    return  (h/2) * (f(a) + f(b)) + sum;
+    return  (h/2.) * (f(a) + f(b)) + h*sum;
 }
     
 
