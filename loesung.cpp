@@ -2,12 +2,6 @@
 #include "unit.h"
 #include <iostream>
 #include <math.h>
-
-double Mittelpunktpunktregel (double a,double b, ) {
-    return (b -a) * f ((a+b)/2.);
-}
-int intervalle ( double epsilon, )
-
 int main (){
     std::cout << " Welches Beispiel soll ausgefuehrt werden?" << std::endl;
     int bsp, pause;
