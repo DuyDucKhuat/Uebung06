@@ -41,6 +41,7 @@ int main (){
     std::vector < int> Schrittweite; //Vektor, der dokumentiert bei welcher Rekursionstiefe jeweils die Bedingung |Im - It | < epsilon erfüllt wurde.
     std::cout << " Welches Beispiel soll ausgefuehrt werden? ( Zwischen 1 und "<< AnzahlBeispiele  << ")" << std::endl;
     int bsp, Aufwand, rekTiefe;
+    rekTiefe;
     Aufwand = 0;
     std::cin >> bsp;
     double epsilon, a, b, I;
