@@ -40,9 +40,9 @@ double summierte_Trapezregel(function f, double a, double b, int n)
 int main (){
     std::vector < int> Schrittweite; //Vektor, der dokumentiert bei welcher Rekursionstiefe jeweils die Bedingung |Im - It | < epsilon erfüllt wurde.
     std::cout << " Welches Beispiel soll ausgefuehrt werden? ( Zwischen 1 und "<< AnzahlBeispiele  << ")" << std::endl;
-    int bsp;
+    int bsp, Aufwand, rekTiefe;
     std::cin >> bsp;
-    double epsilon, a, b, I, Aufwand,rekTiefe;
+    double epsilon, a, b, I;
     bool Grafik = true;
     Start ( bsp, a, b, epsilon, Grafik);
     
