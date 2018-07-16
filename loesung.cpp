@@ -4,13 +4,12 @@
 #include <math.h>
 int main (){
     std::cout << " Welches Beispiel soll ausgefuehrt werden?" << std::endl;
-    int bsp, pause;
+    int bsp;
     std::cin >> bsp;
     double epsilon, a, b;
-    bool Grafik;
-    Start ( Bsp, a, b, epsilon, Grafik, pause);
+    bool Grafik = true;
+    Start ( bsp, a, b, epsilon, Grafik);
 
-    int intervalle;
     double IM = 0;
     double IT = 0;
     double differenz = 1000;
@@ -27,8 +26,9 @@ int main (){
         }
         differenz = fabs( IM - IT);
     }
+    double h = (b-a)/n.;
     double I = 0
-    I += h/6. *( f(a) + f(b));
+    I += h/6. *( f(a) + f(b) );
     for (int i = 0 ; i < n ;  i++){
         I += 4*h/6. * f(a+ i*h);
     }
