@@ -58,7 +58,7 @@ int main (){
         
     }
     double res = summierte_Trapezregel(f,a,b,max);
-    std::cout<<"Größte Rekursionstiefe bei adaptiver Auswertung: " << max <<". \n Und für die summierte Trapezregel erhalten wir: " << res << ". \n Sowieso den Rechenaufwand" <<  max + 1 << std::endl; ;
+    std::cout<<"Größte Rekursionstiefe bei adaptiver Auswertung: " << max <<". \n Und für die summierte Trapezregel erhalten wir: " << res << ". \n Sowieso den Rechenaufwand " <<  max + 1 << std::endl; ;
     
     
 
