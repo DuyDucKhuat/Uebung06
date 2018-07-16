@@ -8,7 +8,7 @@ double Trapezregel( double a, double b, double fa, double fb) {return (b-a) * (1
 double Mittelpunktsregel( double a, double b, double fm){ return (b-a) * fm;}
 double Simpsonregel( double a, double b, double fa, double fb, double fm){return (b-a)*(1./6 * fa + 4./6 * fm + 1./6*fb);}
 bool fehler( double a, double b, double fa, double fb,double fm, double epsilon){return fabs(Mittelpunktsregel(a,b,fm) - Trapezregel(a,b,fa,fb)) < epsilon;}
-void adaptiveMethod(double& I, function f, double a, double b, double fa, double fb, int& Aufwand, double epsilon, int rekTiefe, std::vector<int> Schrittweite)
+void adaptiveMethod(double& I, function f, double a, double b, double fa, double fb, int& Aufwand, double epsilon, int rekTiefe, std::vector<int>& Schrittweite)
 {
     double fm;
     if(rekTiefe == 0){
@@ -58,7 +58,7 @@ int main (){
         
     }
     double res = summierte_Trapezregel(f,a,b,max);
-    std::cout<<"Größte Rekursionstiefe bei adaptiver Auswertung: " << max <<". \n Und für die summierte Trapezregel erhalten wir: " << res << ". \n Sowieso den Rechenaufwand " <<  max + 1 << std::endl; ;
+    std::cout<<"Größte Rekursionstiefe bei adaptiver Auswertung: " << max <<". \nUnd für die summierte Trapezregel erhalten wir: " << res << ". \nSowieso den Rechenaufwand " <<  max + 1 << std::endl; ;
     
     
 
