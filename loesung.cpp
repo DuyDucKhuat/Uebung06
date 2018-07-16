@@ -54,7 +54,7 @@ int main (){
     int max  = 0;
     for ( int v : Schrittweite) if ( max < v) max = v; //größte Rekursionstiefe
     int n = pow(2,max);
-    double res = summierte_Trapezregel(f,a,b,max);
+    double res = summierte_Trapezregel(f,a,b,n);
     std::cout<<"Größte Rekursionstiefe bei adaptiver Auswertung: " << max <<". \nUnd für die summierte Trapezregel erhalten wir: " << res << ". \nSowieso den Rechenaufwand " <<  max + 1 << std::endl; ;
     
     
