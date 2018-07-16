@@ -52,7 +52,11 @@ int main (){
     std::cout << "Aufrufe der Funktion f: " << Aufwand << std::endl;
     Ergebnis ( I);
     int max  = 0;
-    for ( int v : Schrittweite) if ( max < v) max = v; //größte Rekursionstiefe
+    for ( int v : Schrittweite){
+        std::cout <<"Vektoreintrag " << v << std::endl;
+        if ( max < v) max = v; //größte Rekursionstiefe
+        
+    }
     double res = summierte_Trapezregel(f,a,b,max);
     std::cout<<"Größte Rekursionstiefe bei adaptiver Auswertung: " << max <<". \n Und für die summierte Trapezregel erhalten wir: " << res << ". \n Sowieso den Rechenaufwand" <<  max + 1 << std::endl; ;
     
